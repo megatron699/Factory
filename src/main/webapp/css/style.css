@@ -1,0 +1,31 @@
+.main-page {
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    background-size: 100%;
+    background-image: url("../content/images/back2.jpg");
+    background-repeat: no-repeat;
+}
+.my-text{
+    width: 500px;
+    opacity: 0.8;
+    background: white;
+    position: sticky;
+    left: 35%;
+}
+.my-text p{
+    opacity: 1;
+    text-align: center;
+    color: black;
+}
+.my-link{
+    width: 500px;
+    opacity: 0.8;
+    background: white;
+    position: sticky;
+    left: 35%;
+}
+.my-link p{
+    opacity: 1;
+    text-align: center;
+}

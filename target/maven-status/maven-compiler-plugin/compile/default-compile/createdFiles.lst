@@ -1,0 +1,17 @@
+models\Manufactory.class
+DAO\IDao.class
+servlets\WorkerServlet.class
+servlets\StoreServlet.class
+models\PlaceOfWork.class
+DAO\AssignmentOfManufactoryDao.class
+DAO\ManufactoryDao.class
+DAO\WorkerDao.class
+models\AssignmentOfManufactory.class
+DAO\PlaceOfWorkDao.class
+servlets\MainServlet.class
+models\Worker.class
+servlets\ManufactoryServlet.class
+DAO\StoreDao.class
+models\Store.class
+utils\HibernateUtils.class
+servlets\AssignmentOfManufactoryServlet.class
