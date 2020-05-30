@@ -16,11 +16,27 @@ import java.io.IOException;
 public class WorkerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        WorkerDao workerDao = new WorkerDao();
-        PlaceOfWorkDao placeOfWorkDao = new PlaceOfWorkDao();
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
-        req.setAttribute("workers", workerDao.findAll());
+        WorkerDao workerDao = new WorkerDao();
+        PlaceOfWorkDao placeOfWorkDao = new PlaceOfWorkDao();
+
+        String search = req.getParameter("search");
+        String searchField = req.getParameter("searchfield");
+        String button = req.getParameter("searching");
+        if(button != null) {
+            switch (button) {
+                case "search":
+                    req.setAttribute("workers", workerDao.search(search, searchField));
+                    break;
+                case "reset":
+                    req.setAttribute("workers", workerDao.findAll());
+                    break;
+            }
+        }
+        else {
+            req.setAttribute("workers", workerDao.findAll());
+        }
         req.setAttribute("placeofworks", placeOfWorkDao.findAll());
         req.getRequestDispatcher("worker.jsp").forward(req, resp);
     }
@@ -61,9 +77,11 @@ public class WorkerServlet extends HttpServlet {
                 vacation = req.getParameterValues("vacation");
                 if(vacation != null && vacation.length > 0)
                     worker.setVacation(true);
+                else worker.setVacation(false);
                 sickLeave = req.getParameterValues("sickLeave");
                 if(sickLeave != null && sickLeave.length > 0)
                     worker.setSickLeave(true);
+                else worker.setSickLeave(false);
                 workerDao.update(worker);
                 break;
             case "delete":

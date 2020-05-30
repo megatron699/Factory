@@ -14,4 +14,6 @@ public interface IDao<T> {
     T getById(long id);
 
     List<T> findAll();
+
+    List<T> search(String search, String searchField);
 }

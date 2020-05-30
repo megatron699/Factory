@@ -2,7 +2,7 @@ package DAO;
 
 
 import models.Store;
-import models.Worker;
+import models.Store;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import utils.HibernateUtils;
@@ -52,6 +52,16 @@ public class StoreDao implements IDao<Store> {
     public List<Store> findAll(){
         currentSession.openCurrentSession();
         List<Store> stores = (List<Store>) currentSession.getCurrentSession().createQuery("FROM Store").list();
+        currentSession.closeCurrentSession();
+        return stores;
+    }
+
+    @Override
+    public List<Store> search(String search, String searchField) {
+        currentSession.openCurrentSession();
+        List<Store> stores;
+        stores = (List<Store>) currentSession.getCurrentSession().createQuery(" FROM Store WHERE " +
+                search + " LIKE '%" + searchField + "%'").list();
         currentSession.closeCurrentSession();
         return stores;
     }

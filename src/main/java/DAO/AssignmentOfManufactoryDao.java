@@ -51,4 +51,9 @@ public class AssignmentOfManufactoryDao implements IDao<AssignmentOfManufactory>
         currentSession.closeCurrentSession();
         return assignmentOfManufactories;
     }
+
+    @Override
+    public List<AssignmentOfManufactory> search(String search, String searchField) {
+        return null;
+    }
 }

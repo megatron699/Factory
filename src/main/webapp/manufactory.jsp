@@ -26,12 +26,18 @@
         </tr>
         </thead>
         <tr>
-            <td title="Введите название цеха"><input type="text" name="placeofworkname" placeholder="Введите название"
-                       title="Введите название цеха"></td>
-            <td title="Введите количество произведённого на данный момент"><input type="number" name="amountcurrently" placeholder="Введите количество"
-                       title="Введите количество произведённого на данный момент" min="0"></td>
-            <td title="Введите, сколько небходимо произвести за месяц"><input type="number" name="amountpermonth" placeholder="Введите количество"
-                       title="Введите количество, сколько необходимо произвести за месяц" min="0"></td>
+            <td title="Введите название цеха">
+                <input type="text" name="placeofworkname" placeholder="Введите название"
+                       title="Введите название цеха" required>
+            </td>
+            <td title="Введите количество произведённого на данный момент">
+                <input type="number" name="amountcurrently" placeholder="Введите количество"
+                       title="Введите количество произведённого на данный момент" min="0" required>
+            </td>
+            <td title="Введите, сколько небходимо произвести за месяц">
+                <input type="number" name="amountpermonth" placeholder="Введите количество"
+                       title="Введите количество, сколько необходимо произвести за месяц" min="0" required>
+            </td>
            <%-- <td title="Введите ID назначения цеха"><input type="number" name="idassign" placeholder="Введите ID"
                        title="Введите ID назначения цеха" min="0"></td>
             <td>--%>
@@ -81,15 +87,15 @@
             </td>
             <td>
                 <input type="text" name="placeofworkname" value="<%=manufactory.getPlaceOfWorkName()%>"
-                       title="<%=manufactory.getPlaceOfWorkName()%>">
+                       title="<%=manufactory.getPlaceOfWorkName()%>" required>
             </td>
             <td>
                 <input type="number" name="amountcurrently" value="<%=manufactory.getAmountCurrently()%>"
-                       title="<%=manufactory.getAmountCurrently()%>" min="0">
+                       title="<%=manufactory.getAmountCurrently()%>" min="0" required>
             </td>
             <td>
                 <input type="number" name="amountpermonth" value="<%=manufactory.getAmountPerMonth()%>"
-                       title="<%=manufactory.getAmountPerMonth()%>" min="0">
+                       title="<%=manufactory.getAmountPerMonth()%>" min="0" required>
             </td>
 
           <%--  <td>

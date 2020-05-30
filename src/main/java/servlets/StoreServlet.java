@@ -19,6 +19,22 @@ public class StoreServlet extends HttpServlet {
         StoreDao storeDao = new StoreDao();
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
+        String search = req.getParameter("search");
+        String searchField = req.getParameter("searchfield");
+        String button = req.getParameter("searching");
+        if(button != null) {
+            switch (button) {
+                case "search":
+                    req.setAttribute("workers", storeDao.search(search, searchField));
+                    break;
+                case "reset":
+                    req.setAttribute("workers", storeDao.findAll());
+                    break;
+            }
+        }
+        else {
+            req.setAttribute("workers", storeDao.findAll());
+        }
         req.setAttribute("stores", storeDao.findAll());
         req.getRequestDispatcher("store.jsp").forward(req, resp);
     }

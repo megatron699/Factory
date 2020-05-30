@@ -51,4 +51,9 @@ public class PlaceOfWorkDao implements IDao<PlaceOfWork> {
         currentSession.closeCurrentSession();
         return placeOfWorks;
     }
+
+    @Override
+    public List<PlaceOfWork> search(String search, String searchField) {
+        return null;
+    }
 }

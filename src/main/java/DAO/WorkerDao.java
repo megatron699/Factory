@@ -51,4 +51,13 @@ public class WorkerDao implements IDao<Worker> {
         currentSession.closeCurrentSession();
         return workers;
     }
+    @Override
+    public List<Worker> search(String search, String searchField){
+        currentSession.openCurrentSession();
+        List<Worker> workers;
+            workers = (List<Worker>) currentSession.getCurrentSession().createQuery(" FROM Worker WHERE " +
+                    search + " LIKE '%" + searchField + "%'").list();
+        currentSession.closeCurrentSession();
+        return workers;
+    }
 }

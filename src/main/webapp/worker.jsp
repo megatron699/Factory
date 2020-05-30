@@ -31,19 +31,19 @@
         <tr>
             <td  title="Введите имя работника">
                 <input type="text" name="lastname" placeholder="Введите фамилию"
-                       title="Введите фамилию работника">
+                       title="Введите фамилию работника" required>
             </td>
             <td title="Введите имя работника">
                 <input type="text" name="firstname" placeholder="Введите имя"
-                       title="Введите имя работника">
+                       title="Введите имя работника" required>
             </td>
             <td title="Введите отчество работника">
                 <input type="text" name="middlename" placeholder="Введите отчество"
-                       title="Введите отчество работника">
+                       title="Введите отчество работника" required>
             </td>
             <td title="Введите должность работника">
                 <input type="text" name="post" placeholder="Введите должность"
-                       title="Введите должность работника">
+                       title="Введите должность работника" required>
             </td>
 
             <td>
@@ -64,7 +64,7 @@
                 <input type="checkbox" name="vacation">
             </td>
             <td>
-                <input type="checkbox" name="sickLeave" title="">
+                <input type="checkbox" name="sickLeave">
             </td>
           <%--  <td title="Введите ID места работы">
                 <input type="number" name="idplaceofwork" placeholder="Введите ID"
@@ -76,6 +76,32 @@
         </tr>
     </table>
 </form>
+
+<form action="worker" method="get">
+
+   <table>
+       <tr>
+           <td>
+               <select name="search">
+                   <option value="lastname">Фамилия</option>
+                   <option value="firstname">Имя</option>
+                   <option value="middlename">Отчество</option>
+                   <option value="post">Должность</option>
+<%--                   <option value="placeofwork">Место работы</option>--%>
+               </select>
+           </td>
+           <td>
+               <input type="search" placeholder="Поиск..." name="searchfield">
+           </td>
+           <td>
+               <button type="submit" class="btn btn-secondary" name="searching" value="search">Найти</button>
+               <button type="submit" class="btn btn-secondary" name="searching" value="reset">Сбросить</button>
+           </td>
+       </tr>
+   </table>
+
+</form>
+
 
     <table class="table table-striped">
         <thead class="thead-dark">
@@ -107,20 +133,20 @@
             </td>
             <td>
                 <input type="text" name="lastname" value="<%=worker.getLastname()%>"
-                       title="<%=worker.getFirstname()%>">
+                       title="<%=worker.getFirstname()%>" required>
             </td>
 
             <td>
                 <input type="text" name="firstname" value="<%=worker.getFirstname()%>"
-                       title="<%=worker.getLastname()%>">
+                       title="<%=worker.getLastname()%>" required>
             </td>
             <td>
                 <input type="text" name="middlename" value="<%=worker.getMiddlename()%>"
-                       title="<%=worker.getMiddlename()%>">
+                       title="<%=worker.getMiddlename()%>" required>
             </td>
             <td>
                 <input type="text" name="post" value="<%=worker.getPost()%>"
-                       title="<%=worker.getPost()%>">
+                       title="<%=worker.getPost()%>" required>
             </td>
             <td>
                 <select type="text" name="placeofwork">
@@ -149,6 +175,7 @@
                     %>
                 </select>
             </td>
+
           <%--  <td>
                 <% if(worker.getPlaceOfWork() != null) { %>
                 <input type="number" name="idplaceofwork" value="<%=worker.getPlaceOfWork().getIdPlaceOfWork()%>"
@@ -160,12 +187,40 @@
                 }
                 %>
             </td>--%>
+            <td>
+                <%
+                    if(worker.isVacation()){
+                %>
+                <input type="checkbox" name="vacation" checked>
+                <%
+                }  else {
+                %>
+                <input type="checkbox" name="vacation">
+                <%
+                    }
+                %>
+            </td>
+            <td>
+                <%
+                    if(worker.isSickLeave()) {
+                %>
+                <input type="checkbox" name="sickLeave" checked>
+                <%
+                } else {
+                %>
+                <input type="checkbox" name="sickLeave">
+                <%
+                    }
+                %>
+            </td>
+
             <td class="my-td">
                 <button type="submit" class="btn btn-secondary" name="action" value="edit">Изменить</button>
             </td>
             <td class="my-td">
                 <button type="submit" class="btn btn-secondary" name="action" value="delete">Удалить</button>
             </td>
+
         </tr>
         </form>
         <%

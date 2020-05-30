@@ -51,4 +51,9 @@ public class ManufactoryDao implements IDao<Manufactory> {
         currentSession.closeCurrentSession();
         return manufactories;
     }
+
+    @Override
+    public List<Manufactory> search(String search, String searchField) {
+        return null;
+    }
 }

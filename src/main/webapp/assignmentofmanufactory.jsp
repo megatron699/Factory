@@ -20,8 +20,10 @@
         </tr>
         </thead>
         <tr>
-            <td title="Введите назначение цеха"><input type="text" name="assign" placeholder="Введите назначение"
-                       title="Введите назначение цеха" width="100%"></td>
+            <td title="Введите назначение цеха">
+                <input type="text" name="assign" placeholder="Введите назначение"
+                       title="Введите назначение цеха" width="100%" required>
+            </td>
             <td>
                 <button type="submit" class="btn btn-secondary" name="action" value="add">Сохранить</button>
             </td>
@@ -48,7 +50,7 @@
         <tr>
             <td>
                 <input type="text" name="id" value="<%=assignmentOfManufactory.getIdAssignmentOfManufactory()%>"
-                       title="<%=Long.toString(assignmentOfManufactory.getIdAssignmentOfManufactory())%>" readonly>
+                       title="<%=Long.toString(assignmentOfManufactory.getIdAssignmentOfManufactory())%>" readonly required>
             </td>
             <td width="100%">
                 <input type="text" name="assign" value="<%=assignmentOfManufactory.getAssign()%>"
