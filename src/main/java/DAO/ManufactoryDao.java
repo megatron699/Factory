@@ -1,6 +1,7 @@
 package DAO;
 
 import models.Manufactory;
+import models.Store;
 import utils.HibernateUtils;
 
 import java.util.List;
@@ -54,6 +55,11 @@ public class ManufactoryDao implements IDao<Manufactory> {
 
     @Override
     public List<Manufactory> search(String search, String searchField) {
-        return null;
+        currentSession.openCurrentSession();
+        List<Manufactory> manufactories;
+        manufactories = (List<Manufactory>) currentSession.getCurrentSession().createQuery(" FROM Manufactory WHERE " +
+                search + " LIKE '%" + searchField + "%'").list();
+        currentSession.closeCurrentSession();
+        return manufactories;
     }
 }

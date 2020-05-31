@@ -25,17 +25,17 @@ public class StoreServlet extends HttpServlet {
         if(button != null) {
             switch (button) {
                 case "search":
-                    req.setAttribute("workers", storeDao.search(search, searchField));
+                    req.setAttribute("stores", storeDao.search(search, searchField));
                     break;
                 case "reset":
-                    req.setAttribute("workers", storeDao.findAll());
+                    req.setAttribute("stores", storeDao.findAll());
                     break;
             }
         }
         else {
             req.setAttribute("workers", storeDao.findAll());
         }
-        req.setAttribute("stores", storeDao.findAll());
+       // req.setAttribute("stores", storeDao.findAll());
         req.getRequestDispatcher("store.jsp").forward(req, resp);
     }
 

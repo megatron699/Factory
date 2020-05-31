@@ -16,11 +16,26 @@ import java.io.IOException;
 public class ManufactoryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ManufactoryDao manufactoryDao = new ManufactoryDao();
-        AssignmentOfManufactoryDao assignmentOfManufactoryDao = new AssignmentOfManufactoryDao();
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
-        req.setAttribute("manufactories", manufactoryDao.findAll());
+        ManufactoryDao manufactoryDao = new ManufactoryDao();
+        AssignmentOfManufactoryDao assignmentOfManufactoryDao = new AssignmentOfManufactoryDao();
+        String search = req.getParameter("search");
+        String searchField = req.getParameter("searchfield");
+        String button = req.getParameter("searching");
+        if(button != null) {
+            switch (button) {
+                case "search":
+                    req.setAttribute("manufactories", manufactoryDao.search(search, searchField));
+                    break;
+                case "reset":
+                    req.setAttribute("manufactories", manufactoryDao.findAll());
+                    break;
+            }
+        }
+        else {
+            req.setAttribute("manufactories", manufactoryDao.findAll());
+        }
         req.setAttribute("assignmentofmanufactories", assignmentOfManufactoryDao.findAll());
         req.getRequestDispatcher("manufactory.jsp").forward(req, resp);
     }

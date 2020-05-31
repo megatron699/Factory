@@ -11,9 +11,26 @@
     <link rel="stylesheet" type="text/css" href="./css/style.css"/>
 </head>
 <body>
-<a href="store">Перейти к управлению данными о складах</a>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<%--    <a class="navbar-brand" href="#">Navbar</a>--%>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="index">На главную<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="store">Управление складами</a>
+            <a class="nav-item nav-link" href="manufactory">Управление цехами</a>
+            <a class="nav-item nav-link" href="assign" >Управление назначениями цехов</a>
+<%--            <a class="nav-item nav-link" href="http://samara.nebar.ru/">Отдых после тяжелого рабочего дня</a>--%>
+        </div>
+    </div>
+</nav>
+
+<%--<a href="store">Перейти к управлению данными о складах</a>
 <a href="manufactory">Перейти к управлению данными о цехах</a>
-<a href="assign">Перейти к управлению данными о назначении цехов</a>
+<a href="assign">Перейти к управлению данными о назначении цехов</a>--%>
 
 <form action="worker" method="POST">
     <table class="table table-striped">

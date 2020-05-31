@@ -1,6 +1,7 @@
 package DAO;
 
 import models.AssignmentOfManufactory;
+import models.Store;
 import utils.HibernateUtils;
 
 import java.util.List;
@@ -54,6 +55,11 @@ public class AssignmentOfManufactoryDao implements IDao<AssignmentOfManufactory>
 
     @Override
     public List<AssignmentOfManufactory> search(String search, String searchField) {
-        return null;
+        currentSession.openCurrentSession();
+        List<AssignmentOfManufactory> assignmentOfManufactories;
+        assignmentOfManufactories = (List<AssignmentOfManufactory>) currentSession.getCurrentSession().createQuery(" FROM AssignmentOfManufactory WHERE " +
+                search + " LIKE '%" + searchField + "%'").list();
+        currentSession.closeCurrentSession();
+        return assignmentOfManufactories;
     }
 }
