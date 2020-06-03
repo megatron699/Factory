@@ -11,7 +11,7 @@ import java.util.List;
 public class AssignmentOfManufactory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_assignment_of_manufactory")
+    @Column(name = "id_assignment_of_manufactory", updatable = false)
     private long idAssignmentOfManufactory;
     private String assign;
    // @JoinColumn(name = "assignmentOfManufactory", referencedColumnName = "assignmentOfManufactory")
@@ -22,7 +22,7 @@ public class AssignmentOfManufactory {
         return idAssignmentOfManufactory;
     }
 
-    public void setIdAssignmentOfManufactory(int idAssignmentOfManufactory) {
+    public void setIdAssignmentOfManufactory(long idAssignmentOfManufactory) {
         this.idAssignmentOfManufactory = idAssignmentOfManufactory;
     }
 

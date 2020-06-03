@@ -1,6 +1,7 @@
 package DAO;
 
 import models.AssignmentOfManufactory;
+import models.PlaceOfWork;
 import models.Store;
 import utils.HibernateUtils;
 
@@ -48,7 +49,9 @@ public class AssignmentOfManufactoryDao implements IDao<AssignmentOfManufactory>
     @Override
     public List<AssignmentOfManufactory> findAll(){
         currentSession.openCurrentSession();
-        List<AssignmentOfManufactory> assignmentOfManufactories = currentSession.getCurrentSession().createCriteria(AssignmentOfManufactory.class).list();
+//        List<AssignmentOfManufactory> assignmentOfManufactories = currentSession.getCurrentSession().createCriteria(AssignmentOfManufactory.class).list();
+        List<AssignmentOfManufactory> assignmentOfManufactories = (List<AssignmentOfManufactory>) currentSession.
+                getCurrentSession().createQuery("FROM AssignmentOfManufactory ").list();
         currentSession.closeCurrentSession();
         return assignmentOfManufactories;
     }

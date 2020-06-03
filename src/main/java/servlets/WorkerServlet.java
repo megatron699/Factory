@@ -20,7 +20,6 @@ public class WorkerServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         WorkerDao workerDao = new WorkerDao();
         PlaceOfWorkDao placeOfWorkDao = new PlaceOfWorkDao();
-
         String search = req.getParameter("search");
         String searchField = req.getParameter("searchfield");
         String button = req.getParameter("searching");
@@ -37,6 +36,7 @@ public class WorkerServlet extends HttpServlet {
         else {
             req.setAttribute("workers", workerDao.findAll());
         }
+//        req.setAttribute();
         req.setAttribute("placeofworks", placeOfWorkDao.findAll());
         req.getRequestDispatcher("worker.jsp").forward(req, resp);
     }
@@ -87,8 +87,12 @@ public class WorkerServlet extends HttpServlet {
             case "delete":
                 workerDao.delete(Long.parseLong(req.getParameter("id")));
                 break;
+            case "inOut":
+                worker = workerDao.get(Long.parseLong(req.getParameter("id")));
+                worker.setPresence(worker);
         }
         req.setAttribute("workers", workerDao.findAll());
+//        req.setAttribute("presence", worker.isPresence());
         req.setAttribute("placeofworks", placeOfWorkDao.findAll());
         req.getRequestDispatcher("worker.jsp").forward(req, resp);
     }

@@ -10,7 +10,7 @@ import java.util.List;
 public class PlaceOfWork {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_place_of_work")
+    @Column(name = "id_place_of_work", updatable = false)
     private long idPlaceOfWork;
     @Column(name = "place_of_work_name")
     private String placeOfWorkName;

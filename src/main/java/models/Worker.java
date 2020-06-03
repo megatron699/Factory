@@ -1,13 +1,19 @@
 package models;
 
+import DAO.AttendanceDao;
+import DAO.WorkerDao;
+import org.hibernate.type.descriptor.java.LocalDateJavaDescriptor;
+
 import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "worker")
 public class Worker {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_worker")
+    @Column(name = "id_worker", updatable = false)
     private long id;
     private String lastname;
     private String firstname;
@@ -15,6 +21,46 @@ public class Worker {
     private String post;
     private boolean vacation;
     private boolean sickLeave;
+    @JoinColumn(name = "id_place_of_work", referencedColumnName = "id_place_of_work")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private PlaceOfWork placeOfWork;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "worker")
+    private List<Attendance> attendances;
+    @Transient
+    private boolean presence;
+
+    public boolean isPresence() {
+        return presence;
+    }
+
+    public void setPresence(Worker worker) {
+        AttendanceDao attendanceDao = new AttendanceDao();
+        WorkerDao workerDao = new WorkerDao();
+        if(presence){
+            presence = false;
+//            Worker worker = workerDao.get(id);
+//            Date dateInWork = worker.getAttendances().
+//            attendanceDao.get(id);
+            Attendance attendance = attendanceDao.getByIdAndDate(worker, new Date());
+            attendance.setDateOutWork(new Date());
+            attendanceDao.update(attendance);
+        }
+        else {
+            presence = true;
+            Attendance attendance = new Attendance();
+            attendance.setDateInWork(new Date());
+            attendance.setWorker(worker);
+            attendanceDao.save(attendance);
+        }
+    }
+
+    public List<Attendance> getAttendances() {
+        return attendances;
+    }
+
+    public void setAttendances(List<Attendance> attendances) {
+        this.attendances = attendances;
+    }
 
     public boolean isVacation() {
         return vacation;
@@ -31,10 +77,6 @@ public class Worker {
     public void setSickLeave(boolean sickLeave) {
         this.sickLeave = sickLeave;
     }
-
-    @JoinColumn(name = "id_place_of_work", referencedColumnName = "id_place_of_work")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private PlaceOfWork placeOfWork;
 
     public long getId() {
         return id;
