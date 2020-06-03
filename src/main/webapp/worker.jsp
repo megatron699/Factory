@@ -232,7 +232,7 @@
             </td>
             <form action="worker" method="post">
             <td>
-                <%
+                <%--<%
                     if(worker.isPresence()){
                 %>
                 <input type="text" name="presence" value="Присутствует" readonly>
@@ -242,7 +242,7 @@
                 <input type="text" name="presence" value="Отсутствует" readonly>
                 <%
                     }
-                %>
+                %>--%>
                 <button type="submit" class="btn btn-secondary" name="action" value="inOut">Пришёл/Ушёл</button>
             </td>
             </form>

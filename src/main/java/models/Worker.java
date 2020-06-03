@@ -26,33 +26,6 @@ public class Worker {
     private PlaceOfWork placeOfWork;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "worker")
     private List<Attendance> attendances;
-    @Transient
-    private boolean presence;
-
-    public boolean isPresence() {
-        return presence;
-    }
-
-    public void setPresence(Worker worker) {
-        AttendanceDao attendanceDao = new AttendanceDao();
-        WorkerDao workerDao = new WorkerDao();
-        if(presence){
-            presence = false;
-//            Worker worker = workerDao.get(id);
-//            Date dateInWork = worker.getAttendances().
-//            attendanceDao.get(id);
-            Attendance attendance = attendanceDao.getByIdAndDate(worker, new Date());
-            attendance.setDateOutWork(new Date());
-            attendanceDao.update(attendance);
-        }
-        else {
-            presence = true;
-            Attendance attendance = new Attendance();
-            attendance.setDateInWork(new Date());
-            attendance.setWorker(worker);
-            attendanceDao.save(attendance);
-        }
-    }
 
     public List<Attendance> getAttendances() {
         return attendances;

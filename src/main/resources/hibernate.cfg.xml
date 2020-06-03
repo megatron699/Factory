@@ -6,9 +6,9 @@
         <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <property name="connection.username">postgres</property>
 <!--        <property name="dialect"> org.hibernate.dialect.PostgreSQLDialect </property>-->
-                <property name="connection.password">1346785Cfif</property>
+<!--                <property name="connection.password">1346785Cfif</property>-->
         <!--       <property name="connection.password">HybrId4917</property> -->
-                <!--<property name="connection.password">11</property>-->
+                <property name="connection.password">11</property>
         <!--<property name="connection.password">penumbra</property>-->
         <property name="hbm2ddl.auto">create-drop</property>
         <!-- Other hibernate settings -->

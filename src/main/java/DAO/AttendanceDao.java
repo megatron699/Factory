@@ -5,8 +5,11 @@ import models.Worker;
 import utils.HibernateUtils;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public class AttendanceDao implements IDao<Attendance>{
     HibernateUtils currentSession = new HibernateUtils();
@@ -65,13 +68,31 @@ public class AttendanceDao implements IDao<Attendance>{
     }
 
 
-    public Attendance getByIdAndDate(Worker worker, Date dateInWork) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        String date = simpleDateFormat.format(dateInWork);
+    public Attendance getByIdAndDate(Worker worker, Date date) {
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         currentSession.openCurrentSession();
-        Attendance attendance = (Attendance) currentSession.getCurrentSession().createQuery("FROM Attendance WHERE " +
-                "date_in_work LIKE '" + date + "' AND id_worker = " + worker.getId());
+        Object object = currentSession.getCurrentSession()
+                .createQuery("FROM Attendance WHERE date_part('year', date_in_work)  = "+ localDate.getYear()
+                        +"AND date_part('day', date_in_work) = "+ localDate.getDayOfMonth()
+                        +"AND date_part('month', date_in_work) = "+ localDate.getMonthValue() +" AND id_worker = " + worker.getId())
+                .uniqueResult();
+        Attendance attendance = null;
+        if (object != null) {
+        attendance = (Attendance) object;
+        }
         currentSession.closeCurrentSession();
         return attendance;
+    }
+
+    public List<Attendance> getAllByDate(Date date) {
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        currentSession.openCurrentSession();
+        List<Attendance> attendances = currentSession.getCurrentSession()
+                .createQuery("FROM Attendance WHERE date_part('year', date_in_work)  = "+ localDate.getYear()
+                        +"AND date_part('day', date_in_work) = "+ localDate.getDayOfMonth()
+                        +"AND date_part('month', date_in_work) = "+ localDate.getMonthValue())
+                .list();
+        currentSession.closeCurrentSession();
+        return attendances;
     }
 }
