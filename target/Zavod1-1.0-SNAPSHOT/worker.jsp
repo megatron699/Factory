@@ -230,7 +230,22 @@
                     }
                 %>
             </td>
-
+            <form action="worker" method="post">
+            <td>
+                <%
+                    if(worker.isPresence()){
+                %>
+                <input type="text" name="presence" value="Присутствует" readonly>
+                <%
+                }   else {
+                %>
+                <input type="text" name="presence" value="Отсутствует" readonly>
+                <%
+                    }
+                %>
+                <button type="submit" class="btn btn-secondary" name="action" value="inOut">Пришёл/Ушёл</button>
+            </td>
+            </form>
             <td class="my-td">
                 <button type="submit" class="btn btn-secondary" name="action" value="edit">Изменить</button>
             </td>

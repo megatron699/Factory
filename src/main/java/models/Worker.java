@@ -38,20 +38,26 @@ public class Worker {
         WorkerDao workerDao = new WorkerDao();
         if(presence){
             presence = false;
+
 //            Worker worker = workerDao.get(id);
 //            Date dateInWork = worker.getAttendances().
 //            attendanceDao.get(id);
-            Attendance attendance = attendanceDao.getByIdAndDate(worker, new Date());
+            Attendance attendance = attendanceDao.getByIdAndDate(this.getId(), new Date());
             attendance.setDateOutWork(new Date());
             attendanceDao.update(attendance);
         }
         else {
             presence = true;
+          //  workerDao.save(worker);
             Attendance attendance = new Attendance();
             attendance.setDateInWork(new Date());
             attendance.setWorker(worker);
             attendanceDao.save(attendance);
         }
+    }
+
+    public void setPresence(boolean presence){
+        this.presence = presence;
     }
 
     public List<Attendance> getAttendances() {

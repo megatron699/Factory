@@ -90,6 +90,7 @@ public class WorkerServlet extends HttpServlet {
             case "inOut":
                 worker = workerDao.get(Long.parseLong(req.getParameter("id")));
                 worker.setPresence(worker);
+    //            req.setAttribute("presence", worker.isPresence());
         }
         req.setAttribute("workers", workerDao.findAll());
 //        req.setAttribute("presence", worker.isPresence());

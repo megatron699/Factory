@@ -65,12 +65,12 @@ public class AttendanceDao implements IDao<Attendance>{
     }
 
 
-    public Attendance getByIdAndDate(Worker worker, Date dateInWork) {
+    public Attendance getByIdAndDate(Long idWorker, Date dateInWork) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String date = simpleDateFormat.format(dateInWork);
         currentSession.openCurrentSession();
         Attendance attendance = (Attendance) currentSession.getCurrentSession().createQuery("FROM Attendance WHERE " +
-                "date_in_work LIKE '" + date + "' AND id_worker = " + worker.getId());
+                "date_in_work LIKE '" + date + "' AND id_worker = " + idWorker);
         currentSession.closeCurrentSession();
         return attendance;
     }

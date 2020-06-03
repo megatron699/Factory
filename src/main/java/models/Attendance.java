@@ -13,9 +13,12 @@ public class Attendance {
     @SequenceGenerator(name = "report_seq", sequenceName = "SEQ_REPORT")
     @Column(name = "id_report", updatable = false)
     private long idReport;
+    @Column(name = "date_in_work")
     private Date dateInWork;
+    @Column(name = "date_out_work")
     private Date dateOutWork;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_worker")
     private Worker worker;
 
     public long getIdReport() {

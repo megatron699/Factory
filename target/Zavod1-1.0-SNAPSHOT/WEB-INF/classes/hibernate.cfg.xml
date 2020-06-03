@@ -19,5 +19,6 @@
         <mapping class="models.Manufactory"/>
         <mapping class="models.AssignmentOfManufactory"/>
         <mapping class="models.Store"/>
+        <mapping class="models.Attendance"/>
     </session-factory>
 </hibernate-configuration>
