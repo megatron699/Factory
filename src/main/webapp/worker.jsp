@@ -234,6 +234,7 @@
             <td>
                 <%--<%
                     if(worker.isPresence()){
+
                 %>
                 <input type="text" name="presence" value="Присутствует" readonly>
                 <%

@@ -84,13 +84,14 @@ public class AttendanceDao implements IDao<Attendance>{
         return attendance;
     }
 
-    public List<Attendance> getAllByDate(Date date) {
+    public List<Long> getAllByDate(Date date) {
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         currentSession.openCurrentSession();
-        List<Attendance> attendances = currentSession.getCurrentSession()
-                .createQuery("FROM Attendance WHERE date_part('year', date_in_work)  = "+ localDate.getYear()
+        List<Long> attendances = currentSession.getCurrentSession()
+                .createQuery("Select id_worker FROM Attendance WHERE date_part('year', date_in_work)  = "+ localDate.getYear()
                         +"AND date_part('day', date_in_work) = "+ localDate.getDayOfMonth()
-                        +"AND date_part('month', date_in_work) = "+ localDate.getMonthValue())
+                        +"AND date_part('month', date_in_work) = "+ localDate.getMonthValue()
+                        + "AND date_out_worker = null")
                 .list();
         currentSession.closeCurrentSession();
         return attendances;
