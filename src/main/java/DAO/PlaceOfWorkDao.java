@@ -47,7 +47,7 @@ public class PlaceOfWorkDao implements IDao<PlaceOfWork> {
     @Override
     public List<PlaceOfWork> findAll(){
         currentSession.openCurrentSession();
-        List<PlaceOfWork> placeOfWorks = (List<PlaceOfWork>) currentSession.getCurrentSession().createQuery("FROM PlaceOfWork").list();
+        List<PlaceOfWork> placeOfWorks = (List<PlaceOfWork>) currentSession.getCurrentSession().createQuery("FROM PlaceOfWork ORDER BY placeOfWorkName").list();
         currentSession.closeCurrentSession();
         return placeOfWorks;
     }
@@ -56,4 +56,12 @@ public class PlaceOfWorkDao implements IDao<PlaceOfWork> {
     public List<PlaceOfWork> search(String search, String searchField) {
         return null;
     }
+
+/*    public String getPlaceOfWorkType(long id){
+        currentSession.openCurrentSession();
+        String placeOfWorkType = currentSession.getCurrentSession().createQuery("SELECT place_of_work_type" +
+                " FROM PlaceOfWork WHERE id_place_of_work = " + id).toString();
+        currentSession.closeCurrentSession();
+        return placeOfWorkType;
+    }*/
 }

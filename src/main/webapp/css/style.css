@@ -25,7 +25,11 @@
     position: sticky;
     left: 35%;
 }
-.my-link p{
+.my-link a{
     opacity: 1;
     text-align: center;
+}
+.my-table{
+    margin-left: 25px;
+    margin-right: 25px;
 }

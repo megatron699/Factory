@@ -51,7 +51,7 @@ public class ManufactoryServlet extends HttpServlet {
         switch (action){
             case "add":
                 manufactory = new Manufactory();
-                manufactory.setPlaceOfWorkName(req.getParameter("placeofworkname"));
+                manufactory.setPlaceOfWorkName(req.getParameter("placeofworkname") + " цех");
                 if(req.getParameter("amountcurrently") != "")
                     manufactory.setAmountCurrently(Integer.parseInt(req.getParameter("amountcurrently")));
                 if(req.getParameter("amountpermonth") != "")

@@ -33,7 +33,7 @@ public class StoreServlet extends HttpServlet {
             }
         }
         else {
-            req.setAttribute("workers", storeDao.findAll());
+            req.setAttribute("stores", storeDao.findAll());
         }
        // req.setAttribute("stores", storeDao.findAll());
         req.getRequestDispatcher("store.jsp").forward(req, resp);
@@ -49,7 +49,7 @@ public class StoreServlet extends HttpServlet {
         switch (action){
             case "add":
                 store = new Store();
-                store.setPlaceOfWorkName(req.getParameter("placeofworkname"));
+                store.setPlaceOfWorkName(req.getParameter("placeofworkname") + " склад");
                 store.setAmountOfStored(Integer.parseInt(req.getParameter("amountofstored")));
                 store.setTypeOfStored(req.getParameter("typeofstored"));
                 storeDao.save(store);

@@ -4,7 +4,8 @@ import models.Attendance;
 import models.Worker;
 import utils.HibernateUtils;
 
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -64,14 +65,50 @@ public class AttendanceDao implements IDao<Attendance>{
         return attendances;
     }
 
-
-    public Attendance getByIdAndDate(Long idWorker, Date dateInWork) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        String date = simpleDateFormat.format(dateInWork);
+    public List<Attendance> findByIdWorker(long idWorker){
         currentSession.openCurrentSession();
-        Attendance attendance = (Attendance) currentSession.getCurrentSession().createQuery("FROM Attendance WHERE " +
-                "date_in_work LIKE '" + date + "' AND id_worker = " + idWorker);
+        List<Attendance> attendances = (List<Attendance>)currentSession.getCurrentSession().createQuery("FROM Attendance WHERE id_worker = " + idWorker
+        + " ORDER BY id_attendance").list();
+        currentSession.closeCurrentSession();
+        return attendances;
+    }
+
+    public Attendance getByIdAndDate(Worker worker, Date date) {
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        currentSession.openCurrentSession();
+        Object object = currentSession.getCurrentSession()
+                .createQuery("FROM Attendance WHERE date_part('year', date_in_work)  = "+ localDate.getYear()
+                        +" AND date_part('day', date_in_work) = "+ localDate.getDayOfMonth()
+                        +" AND date_part('month', date_in_work) = "+ localDate.getMonthValue() +" AND id_worker = " + worker.getIdWorker() +
+                        " AND date_out_work IS NULL")
+                .uniqueResult();
+        Attendance attendance = null;
+        if (object != null) {
+        attendance = (Attendance) object;
+        }
         currentSession.closeCurrentSession();
         return attendance;
     }
+/*    // TODO
+    public List<Long> getAllByDate(Date date) {
+        try {
+            LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            currentSession.openCurrentSession();
+            List<Long> attendances = currentSession.getCurrentSession()
+                    .createQuery("SELECT Attendance.worker FROM Attendance where date_part('year', dateInWork) = 2020 " +
+                                    "AND date_part('month', dateInWork) = 06 and date_part('day', dateInWork) = 03 and dateOutWork IS NULL"
+
+                            *//*"SELECT Attendance.worker FROM Attendance WHERE date_part('year', dateInWork)  = " + localDate.getYear()
+                            + " AND date_part('day', dateInWork) = " + localDate.getDayOfMonth()
+                            + " AND date_part('month', dateInWork) = " + localDate.getMonthValue()
+                            + " AND dateOutWork IS NULL"*//*)
+                    .list();
+            currentSession.closeCurrentSession();
+            return attendances;
+        }
+        catch (NullPointerException ex){
+            currentSession.closeCurrentSession();
+            return null;
+        }
+    }*/
 }

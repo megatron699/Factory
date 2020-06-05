@@ -48,7 +48,7 @@ public class ManufactoryDao implements IDao<Manufactory> {
     @Override
     public List<Manufactory> findAll(){
         currentSession.openCurrentSession();
-        List<Manufactory> manufactories = (List<Manufactory>) currentSession.getCurrentSession().createQuery("FROM Manufactory").list();
+        List<Manufactory> manufactories = (List<Manufactory>) currentSession.getCurrentSession().createQuery("FROM Manufactory ORDER BY placeOfWorkName").list();
         currentSession.closeCurrentSession();
         return manufactories;
     }
@@ -58,7 +58,7 @@ public class ManufactoryDao implements IDao<Manufactory> {
         currentSession.openCurrentSession();
         List<Manufactory> manufactories;
         manufactories = (List<Manufactory>) currentSession.getCurrentSession().createQuery(" FROM Manufactory WHERE " +
-                search + " LIKE '%" + searchField + "%'").list();
+                search + " LIKE '%" + searchField + "%' ORDER BY " + search).list();
         currentSession.closeCurrentSession();
         return manufactories;
     }

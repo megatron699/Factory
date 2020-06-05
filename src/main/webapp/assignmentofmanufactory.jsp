@@ -16,10 +16,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link" href="index">На главную<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="store">Управление складами</a>
-            <a class="nav-item nav-link" href="worker">Управление работниками</a>
-            <a class="nav-item nav-link" href="manufactory" >Управление цехами</a>
+            <a class="nav-item nav-link active" href="index">На главную<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" href="store">Управление складами</a>
+            <a class="nav-item nav-link active" href="worker">Управление работниками</a>
+            <a class="nav-item nav-link active" href="manufactory" >Управление цехами</a>
 
         </div>
     </div>
@@ -30,42 +30,47 @@
 <a href="worker">Перейти к управлению данными о работниках</a>
 <a href="manufactory">Перейти к управлению данными о цехах</a>
 --%>
-
+<div class="my-table">
 <form action="assign" method="POST">
     <table class="table table-striped">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">Наименование назначения</th>
+            <th scope="col">Назначение цеха</th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tr>
+            <div class="input-group mb-3">
             <td title="Введите назначение цеха">
-                <input type="text" name="assign" placeholder="Введите назначение"
-                       title="Введите назначение цеха" width="100%" required>
+                <input type="text" class="form-control" name="assign" placeholder="Введите назначение"
+                       title="Введите назначение цеха" required>
             </td>
             <td>
                 <button type="submit" class="btn btn-secondary" name="action" value="add">Сохранить</button>
             </td>
+            </div>
         </tr>
     </table>
 </form>
 
 <form action="assign" method="get">
 
-    <table>
+    <table class="table">
         <tr>
+            <div class="input-group mb-3">
             <td>
-                <select name="search">
-                    <option value="assign">Название цеха</option>
+                <select class="form-control" name="search">
+                    <option class="form-control" value="assign">Назначение цеха</option>
                 </select>
             </td>
             <td>
-                <input type="search" placeholder="Поиск..." name="searchfield">
+                <input type="search" class="form-control" placeholder="Поиск..." name="searchfield" required>
             </td>
             <td>
                 <button type="submit" class="btn btn-secondary" name="searching" value="search">Найти</button>
                 <button type="submit" class="btn btn-secondary" name="searching" value="reset">Сбросить</button>
             </td>
+            </div>
         </tr>
     </table>
 
@@ -74,8 +79,10 @@
     <table class="table table-striped">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Наименование назначения</th>
+            <th scope="col"></th>
+            <th scope="col">Назначение цеха</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <%
@@ -88,12 +95,13 @@
         %>
         <form action="assign" method="POST">
         <tr>
+            <div class="input-group mb-3">
             <td>
-                <input type="text" name="id" value="<%=assignmentOfManufactory.getIdAssignmentOfManufactory()%>"
-                       title="<%=Long.toString(assignmentOfManufactory.getIdAssignmentOfManufactory())%>" readonly required>
+                <input type="text" hidden class="form-control" name="id" value="<%=assignmentOfManufactory.getIdAssignmentOfManufactory()%>"
+                       title="<%=Long.toString(assignmentOfManufactory.getIdAssignmentOfManufactory())%>" readonly>
             </td>
-            <td width="100%">
-                <input type="text" name="assign" value="<%=assignmentOfManufactory.getAssign()%>"
+            <td>
+                <input type="text" class="form-control" name="assign" value="<%=assignmentOfManufactory.getAssign()%>"
                        title="<%=assignmentOfManufactory.getAssign()%>">
             </td>
             <td>
@@ -102,6 +110,7 @@
             <td>
                 <button type="submit" class="btn btn-secondary" name="action" value="delete">Удалить</button>
             </td>
+            </div>
         </tr>
         </form>
         <%
@@ -117,6 +126,6 @@
         %>
     </table>
 
-
+</div>
 </body>
 </html>

@@ -51,7 +51,7 @@ public class StoreDao implements IDao<Store> {
     @Override
     public List<Store> findAll(){
         currentSession.openCurrentSession();
-        List<Store> stores = (List<Store>) currentSession.getCurrentSession().createQuery("FROM Store").list();
+        List<Store> stores = (List<Store>) currentSession.getCurrentSession().createQuery("FROM Store ORDER BY placeOfWorkName").list();
         currentSession.closeCurrentSession();
         return stores;
     }
@@ -61,7 +61,7 @@ public class StoreDao implements IDao<Store> {
         currentSession.openCurrentSession();
         List<Store> stores;
         stores = (List<Store>) currentSession.getCurrentSession().createQuery(" FROM Store WHERE " +
-                search + " LIKE '%" + searchField + "%'").list();
+                search + " LIKE '%" + searchField + "%' ORDER BY " + search).list();
         currentSession.closeCurrentSession();
         return stores;
     }

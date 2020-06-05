@@ -2,6 +2,7 @@ package models;
 
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class Attendance {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "report_seq")
     @SequenceGenerator(name = "report_seq", sequenceName = "SEQ_REPORT")
-    @Column(name = "id_report", updatable = false)
+    @Column(name = "id_attendance", updatable = false)
     private long idReport;
     @Column(name = "date_in_work")
     private Date dateInWork;
@@ -33,6 +34,12 @@ public class Attendance {
         return dateInWork;
     }
 
+    public String getFormatDateInWork() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy H:mm");
+        return simpleDateFormat.format(dateInWork);
+    }
+
+
     public void setDateInWork(Date dateInWork) {
         this.dateInWork = dateInWork;
     }
@@ -41,7 +48,13 @@ public class Attendance {
         return dateOutWork;
     }
 
+    public String getFormatDateOutWork() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy H:mm");
+        return simpleDateFormat.format(dateOutWork);
+    }
+
     public void setDateOutWork(Date dateOutWork) {
+
         this.dateOutWork = dateOutWork;
     }
 

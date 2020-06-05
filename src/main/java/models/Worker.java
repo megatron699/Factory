@@ -1,11 +1,6 @@
 package models;
 
-import DAO.AttendanceDao;
-import DAO.WorkerDao;
-import org.hibernate.type.descriptor.java.LocalDateJavaDescriptor;
-
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -14,49 +9,26 @@ public class Worker {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_worker", updatable = false)
-    private long id;
+    private long idWorker;
     private String lastname;
     private String firstname;
     private String middlename;
     private String post;
     private boolean vacation;
+    @Column(name = "sick_leave")
     private boolean sickLeave;
     @JoinColumn(name = "id_place_of_work", referencedColumnName = "id_place_of_work")
     @ManyToOne(fetch = FetchType.LAZY)
     private PlaceOfWork placeOfWork;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "worker")
     private List<Attendance> attendances;
-    @Transient
     private boolean presence;
 
     public boolean isPresence() {
         return presence;
     }
 
-    public void setPresence(Worker worker) {
-        AttendanceDao attendanceDao = new AttendanceDao();
-        WorkerDao workerDao = new WorkerDao();
-        if(presence){
-            presence = false;
-
-//            Worker worker = workerDao.get(id);
-//            Date dateInWork = worker.getAttendances().
-//            attendanceDao.get(id);
-            Attendance attendance = attendanceDao.getByIdAndDate(this.getId(), new Date());
-            attendance.setDateOutWork(new Date());
-            attendanceDao.update(attendance);
-        }
-        else {
-            presence = true;
-          //  workerDao.save(worker);
-            Attendance attendance = new Attendance();
-            attendance.setDateInWork(new Date());
-            attendance.setWorker(worker);
-            attendanceDao.save(attendance);
-        }
-    }
-
-    public void setPresence(boolean presence){
+    public void setPresence(boolean presence) {
         this.presence = presence;
     }
 
@@ -84,12 +56,12 @@ public class Worker {
         this.sickLeave = sickLeave;
     }
 
-    public long getId() {
-        return id;
+    public long getIdWorker() {
+        return idWorker;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setIdWorker(long id) {
+        this.idWorker = id;
     }
 
     public String getLastname() {

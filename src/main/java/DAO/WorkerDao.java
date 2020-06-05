@@ -47,7 +47,7 @@ public class WorkerDao implements IDao<Worker> {
     @Override
     public List<Worker> findAll(){
         currentSession.openCurrentSession();
-        List<Worker> workers = (List<Worker>) currentSession.getCurrentSession().createQuery("FROM Worker").list();
+        List<Worker> workers = (List<Worker>) currentSession.getCurrentSession().createQuery("FROM Worker ORDER BY lastname").list();
         currentSession.closeCurrentSession();
         return workers;
     }
@@ -56,7 +56,7 @@ public class WorkerDao implements IDao<Worker> {
         currentSession.openCurrentSession();
         List<Worker> workers;
             workers = (List<Worker>) currentSession.getCurrentSession().createQuery(" FROM Worker WHERE " +
-                    search + " LIKE '%" + searchField + "%'").list();
+                    search + " LIKE '%" + searchField + "%' ORDER BY " + search).list();
         currentSession.closeCurrentSession();
         return workers;
     }

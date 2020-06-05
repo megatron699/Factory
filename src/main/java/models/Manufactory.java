@@ -15,10 +15,6 @@ public class Manufactory extends PlaceOfWork{
     @JoinColumn(name = "id_assignment_of_manufactory", referencedColumnName = "id_assignment_of_manufactory")
     private AssignmentOfManufactory assignmentOfManufactory;
 
-    public Manufactory(){
-
-    }
-
     public int getAmountCurrently() {
         return amountCurrently;
     }

@@ -14,11 +14,11 @@
     <p>Студента группы 6401-090301D</p>
     <p>Мартюшова Александра Дмитриевича</p>
 </div>
-<div class="my-link">
-    <p><a href="manufactory">Перейти к управлению данными о цехах</a></p>
-    <p><a href="store">Перейти к управлению данными о складах</a></p>
-    <p><a href="worker">Перейти к управлению данными о работниках</a></p>
-    <p><a href="assign">Перейти к управлению данными о назначении цехов</a></p>
+<div class="my-link list-group">
+    <a class="list-group-item list-group-item-action" href="manufactory">Перейти к управлению данными о цехах</a>
+    <a class="list-group-item list-group-item-action" href="store">Перейти к управлению данными о складах</a>
+    <a class="list-group-item list-group-item-action" href="worker">Перейти к управлению данными о работниках</a>
+    <a class="list-group-item list-group-item-action" href="assign">Перейти к управлению данными о назначении цехов</a>
 </div>
 </body>
 </html>
