@@ -7,7 +7,7 @@ import javax.servlet.ServletException;
         import javax.servlet.http.HttpServletResponse;
         import java.io.IOException;
 
-@WebServlet("/index")
+@WebServlet("/Zavod/admin/index")
 public class MainServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
