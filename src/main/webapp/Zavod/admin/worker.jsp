@@ -132,6 +132,7 @@
 
 </form>
 
+<%--        <a href="logins" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Просмотреть логины работников</a>--%>
 
     <table class="table table-striped">
         <thead class="thead-dark">
@@ -280,6 +281,13 @@
                 <form action="register" method="get">
                     <button type="submit" class="btn btn-secondary" name="register" value="<%=worker.getIdWorker()%>">Зарегистрировать</button>
 <%--                <a href="register" class="btn btn-secondary" role="button">Зарегистрировать</a>--%>
+                </form>
+                <%
+                    } else {
+                %>
+                <form action="workerlogin" method="get">
+                    <button type="submit" class="btn btn-secondary" name="workerlogin" value="<%=worker.getIdWorker()%>">Данные для входа</button>
+                    <%--                <a href="register" class="btn btn-secondary" role="button">Зарегистрировать</a>--%>
                 </form>
                 <%
                     }

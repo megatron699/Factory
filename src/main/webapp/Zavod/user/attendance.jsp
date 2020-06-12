@@ -84,7 +84,8 @@
         }
     %>
 </table>
-    <a href="worker" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Вернуться к работникам</a>
+
 </div>
+<a href="worker" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Вернуться назад</a>
 </body>
 </html>

@@ -30,7 +30,7 @@
 <%--<a href="store">Перейти к управлению данными о складах</a>
 <a href="manufactory">Перейти к управлению данными о цехах</a>
 <a href="assign">Перейти к управлению данными о назначении цехов</a>--%>
-
+<div class="my-table">
 <table class="table table-striped">
     <thead class="thead-dark">
     <tr>

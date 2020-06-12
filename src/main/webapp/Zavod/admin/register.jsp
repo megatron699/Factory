@@ -25,6 +25,8 @@
             <a class="nav-item nav-link active" href="store">Управление складами</a>
             <a class="nav-item nav-link active" href="manufactory">Управление цехами</a>
             <a class="nav-item nav-link active" href="assign">Управление назначениями цехов</a>
+
+
         </div>
     </div>
 </nav>
@@ -43,13 +45,13 @@
             <tr>
                 <td>
                     <label for="password">Пароль</label>
-                    <input type="text" id="password" name="password" class="form-control" required>
+                    <input type="password" id="password" name="password" class="form-control" required>
                 </td>
             </tr>
             <tr>
                 <td>
                     <label for="passconfirm">Подтверждение пароля</label>
-                    <input type="text" id="passconfirm" name="passconfirm" class="form-control" required>
+                    <input type="password" id="passconfirm" name="passconfirm" class="form-control" required>
                 </td>
             </tr>
             <tr>
@@ -88,6 +90,8 @@
         </table>
     </form>
     </div>
+
 </div>
+<a href="worker" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Вернуться к работникам</a>
 </body>
 </html>

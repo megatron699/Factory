@@ -6,14 +6,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
 </head>
 <body class="main-page">
-<div class="my-text">
-    <p>Автоматизированная система учёта работников завода</p>
-    <p>Данное приложение позволяет вести учёт работников завода и управлять данными о них</p>
-    <p>А также позволяет управлять данными о рабочих местах</p>
-    <p>Выпускная квалификационная работа</p>
-    <p>Студента группы 6401-090301D</p>
-    <p>Мартюшова Александра Дмитриевича</p>
-</div>
+
 <div class="my-link list-group">
     <a class="list-group-item list-group-item-action" href="manufactory">Перейти к управлению данными о цехах</a>
     <a class="list-group-item list-group-item-action" href="store">Перейти к управлению данными о складах</a>

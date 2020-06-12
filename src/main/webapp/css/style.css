@@ -1,7 +1,3 @@
-body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
 
 .main-page {
     text-align: center;
@@ -10,7 +6,14 @@ body {
     background-size: 100%;
     background-image: url("../content/images/back2.jpg");
     background-repeat: no-repeat;
+    padding-top: 50px;
+    padding-bottom: 20px;
 }
+/*.main-page body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}*/
+
 .my-text{
     width: 500px;
     opacity: 0.8;
@@ -47,6 +50,7 @@ body {
 .tiny-panel{
     margin:20px auto;
     width:300px;
+    margin-left: 41%;
 }
 .my-panel label, input, button{
     opacity: 1;

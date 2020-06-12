@@ -1,0 +1,22 @@
+package servlets;
+
+import DAO.UserDao;
+import models.User;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@WebServlet("/Zavod/admin/workerlogin")
+public class WorkerLoginServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UserDao userDao = new UserDao();
+        User user = userDao.get(Long.parseLong(req.getParameter("workerlogin")));
+        req.setAttribute("user", user);
+        req.getRequestDispatcher("workerlogin.jsp").forward(req, resp);
+    }
+}

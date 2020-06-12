@@ -13,8 +13,18 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css"/>
 </head>
 <body class="main-page">
-<div class="my-panel tiny-panel">
-    <div style="padding: 15px; padding-bottom: 5px">
+
+<div class="my-text">
+    <p>Автоматизированная система учёта работников завода</p>
+    <p>Данное приложение позволяет вести учёт работников завода и управлять данными о них</p>
+    <p>А также позволяет управлять данными о рабочих местах</p>
+    <p>Выпускная квалификационная работа</p>
+    <p>Студента группы 6401-090301D</p>
+    <p>Мартюшова Александра Дмитриевича</p>
+</div>
+
+<div class="my-panel tiny-panel my-text">
+    <div style="padding: 15px; padding-left: 35px; padding-bottom: 5px">
     <form action="login" method="post">
         <table style="text-align: center">
             <tr>
