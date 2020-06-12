@@ -26,8 +26,6 @@ public class LoginFilter implements Filter{
             String loginURI = request.getContextPath() + "/Zavod/login";
             boolean loggedIn = session != null && session.getAttribute("username") != null && session.getAttribute("userrole") != null;
             boolean loginRequest = request.getRequestURI().equals(loginURI);
-            //Если запрос пришел со страницы с входом или сессия не пуста даем добро следовать дальше
-            //Если нет ридерект на страницу входа
             if (loggedIn || loginRequest) {
                 filterChain.doFilter(request, response);
             } else {

@@ -31,27 +31,34 @@ public class WorkerUserServlet extends HttpServlet {
         AttendanceDao attendanceDao = new AttendanceDao();
         WorkerDao workerDao = new WorkerDao();
         HttpSession session = req.getSession(false);
-        Worker worker = workerDao.get(Long.parseLong(req.getParameter("id")));
-        Attendance attendance;
-        if(!worker.isPresence()) {
-            worker.setPresence(true);
-            workerDao.update(worker);
-            session.setAttribute("worker", worker);
-            attendance = new Attendance();
-            attendance.setWorker(worker);
-            attendance.setDateInWork(new Date());
-            attendanceDao.save(attendance);
-        } else {
-            attendance = attendanceDao.getByIdAndDate(worker, new Date());
-            worker.setPresence(false);
-            workerDao.update(worker);
-            session.setAttribute("worker", worker);
-            attendance.setWorker(worker);
-            attendance.setDateOutWork(new Date());
-            attendanceDao.update(attendance);
+        if(!req.getParameter("action").equals("exit")) {
+            Worker worker = workerDao.get(Long.parseLong(req.getParameter("id")));
+            Attendance attendance;
+            if (!worker.isPresence()) {
+                worker.setPresence(true);
+                workerDao.update(worker);
+                session.setAttribute("worker", worker);
+                attendance = new Attendance();
+                attendance.setWorker(worker);
+                attendance.setDateInWork(new Date());
+                attendanceDao.save(attendance);
+            } else {
+                attendance = attendanceDao.getByIdAndDate(worker, new Date());
+                worker.setPresence(false);
+                workerDao.update(worker);
+                session.setAttribute("worker", worker);
+                attendance.setWorker(worker);
+                attendance.setDateOutWork(new Date());
+                attendanceDao.update(attendance);
+            }
+
+            req.setAttribute("worker", worker);
+            req.getRequestDispatcher("worker.jsp").forward(req, resp);
         }
-        req.setAttribute("worker", worker);
-        req.getRequestDispatcher("worker.jsp").forward(req, resp);
+        else {
+            session.invalidate();
+            resp.sendRedirect("/Zavod/login");
+        }
     }
 
 }

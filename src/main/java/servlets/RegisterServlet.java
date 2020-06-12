@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/Zavod/admin/register")
@@ -24,31 +25,37 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserDao userDao = new UserDao();
-        WorkerDao workerDao = new WorkerDao();
-        User user = new User();
-        User usernameInDb = userDao.getByUsername(req.getParameter("username"));
-        String password = req.getParameter("password");
-        if(usernameInDb == null) {
-            user.setUsername(req.getParameter("username"));
-            if(password.equals(req.getParameter("passconfirm"))) {
-                user.setPassword(password);
+        if (!req.getParameter("action").equals("exit")) {
+            UserDao userDao = new UserDao();
+            WorkerDao workerDao = new WorkerDao();
+            User user = new User();
+            User usernameInDb = userDao.getByUsername(req.getParameter("username"));
+            String password = req.getParameter("password");
+            if (usernameInDb == null) {
+                user.setUsername(req.getParameter("username"));
+                if (password.equals(req.getParameter("passconfirm"))) {
+                    user.setPassword(password);
+                } else {
+                    req.setAttribute("status", "password");
+                    req.getRequestDispatcher("register.jsp").forward(req, resp);
+                }
+                String[] userRole = req.getParameterValues("userrole");
+                if (userRole != null && userRole.length > 0) {
+                    user.setUserRole(true);
+                } else {
+                    user.setUserRole(false);
+                }
+                user.setWorker(workerDao.get(Long.parseLong(req.getParameter("register"))));
+                userDao.save(user);
+                resp.sendRedirect(req.getContextPath() + "/Zavod/admin/worker");
             } else {
-                req.setAttribute("status", "password");
+                req.setAttribute("status", "username");
                 req.getRequestDispatcher("register.jsp").forward(req, resp);
             }
-            String[] userRole = req.getParameterValues("userrole");
-            if (userRole != null && userRole.length > 0) {
-                user.setUserRole(true);
-            } else {
-                user.setUserRole(false);
-            }
-            user.setWorker(workerDao.get(Long.parseLong(req.getParameter("register"))));
-            userDao.save(user);
-            resp.sendRedirect(req.getContextPath() + "/Zavod/admin/worker");
         } else {
-            req.setAttribute("status", "username");
-            req.getRequestDispatcher("register.jsp").forward(req, resp);
+            HttpSession session = req.getSession(false);
+            session.invalidate();
+            resp.sendRedirect("/Zavod/login");
         }
     }
 }

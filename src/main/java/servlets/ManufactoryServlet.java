@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/Zavod/admin/manufactory")
@@ -75,9 +76,18 @@ public class ManufactoryServlet extends HttpServlet {
             case "delete":
                 manufactoryDao.delete(Long.parseLong(req.getParameter("id")));
                 break;
+
+            case "exit":
+                HttpSession session = req.getSession(false);
+                session.invalidate();
+                resp.sendRedirect("/Zavod/login");
+                break;
         }
-        req.setAttribute("assignmentofmanufactories", assignmentOfManufactoryDao.findAll());
-        req.setAttribute("manufactories", manufactoryDao.findAll());
-        req.getRequestDispatcher("manufactory.jsp").forward(req, resp);
+        if(!action.equals("exit")) {
+
+            req.setAttribute("assignmentofmanufactories", assignmentOfManufactoryDao.findAll());
+            req.setAttribute("manufactories", manufactoryDao.findAll());
+            req.getRequestDispatcher("manufactory.jsp").forward(req, resp);
+        }
     }
 }

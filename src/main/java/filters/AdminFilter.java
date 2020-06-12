@@ -29,9 +29,7 @@ public class AdminFilter implements Filter {
             if (!userRole) {
                 response.sendRedirect(request.getContextPath() + "/Zavod/user/worker");
             } else {
-              /*  StringBuffer path = request.getRequestURL();
-            //    request.getRequestDispatcher(path.toString()).forward(request, response);
-                response.sendRedirect(path.toString());*/
+
                 filterChain.doFilter(request, response);
             }
         } else{

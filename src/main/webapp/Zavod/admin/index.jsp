@@ -12,6 +12,9 @@
     <a class="list-group-item list-group-item-action" href="store">Перейти к управлению данными о складах</a>
     <a class="list-group-item list-group-item-action" href="worker">Перейти к управлению данными о работниках</a>
     <a class="list-group-item list-group-item-action" href="assign">Перейти к управлению данными о назначении цехов</a>
+    <form action="index" method="post">
+        <button type="submit" name="action" value="exit" class="btn list-group-item list-group-item-action">Выйти</button>
+    </form>
 </div>
 </body>
 </html>

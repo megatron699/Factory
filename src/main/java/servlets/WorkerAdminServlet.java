@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
 
@@ -49,6 +50,7 @@ public class WorkerAdminServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         String action = req.getParameter("action");
+
         Worker worker;
         PlaceOfWorkDao placeOfWorkDao = new PlaceOfWorkDao();
         WorkerDao workerDao = new WorkerDao();
@@ -110,12 +112,18 @@ public class WorkerAdminServlet extends HttpServlet {
                     attendance.setDateOutWork(new Date());
                     attendanceDao.update(attendance);
                 }
-
+                break;
+            case "exit":
+                HttpSession session = req.getSession(false);
+                session.invalidate();
+                resp.sendRedirect("/Zavod/login");
+                break;
         }
-
-        req.setAttribute("workers", workerDao.findAll());
+        if(!action.equals("exit")) {
+            req.setAttribute("workers", workerDao.findAll());
 //        req.setAttribute("presence", worker.isPresence());
-        req.setAttribute("placeofworks", placeOfWorkDao.findAll());
-        req.getRequestDispatcher("worker.jsp").forward(req, resp);
+            req.setAttribute("placeofworks", placeOfWorkDao.findAll());
+            req.getRequestDispatcher("worker.jsp").forward(req, resp);
+        }
     }
 }

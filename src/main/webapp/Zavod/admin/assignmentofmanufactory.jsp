@@ -20,7 +20,9 @@
             <a class="nav-item nav-link active" href="store">Управление складами</a>
             <a class="nav-item nav-link active" href="worker">Управление работниками</a>
             <a class="nav-item nav-link active" href="manufactory" >Управление цехами</a>
-
+            <form action="assign" method="post">
+                <button type="submit" name="action" value="exit" class="nav-item btn nav-link active">Выйти</button>
+            </form>
         </div>
     </div>
 </nav>
@@ -30,6 +32,7 @@
 <a href="worker">Перейти к управлению данными о работниках</a>
 <a href="manufactory">Перейти к управлению данными о цехах</a>
 --%>
+
 <div class="my-table">
 <form action="assign" method="POST">
     <table class="table table-striped">

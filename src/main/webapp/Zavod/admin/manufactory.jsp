@@ -26,6 +26,9 @@
             <a class="nav-item nav-link active" href="store">Управление складами</a>
             <a class="nav-item nav-link active" href="worker">Управление работниками</a>
             <a class="nav-item nav-link active" href="assign" >Управление назначениями цехов</a>
+            <form action="register" method="post">
+                <button type="submit" name="action" value="exit" class="nav-item btn nav-link active">Выйти</button>
+            </form>
         </div>
     </div>
 </nav>

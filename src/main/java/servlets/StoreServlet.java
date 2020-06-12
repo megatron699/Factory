@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/Zavod/admin/store")
@@ -64,8 +65,15 @@ public class StoreServlet extends HttpServlet {
             case "delete":
                 storeDao.delete(Long.parseLong(req.getParameter("id")));
                 break;
+            case "exit":
+                HttpSession session = req.getSession(false);
+                session.invalidate();
+                resp.sendRedirect("/Zavod/login");
+                break;
         }
-        req.setAttribute("stores", storeDao.findAll());
-        req.getRequestDispatcher("store.jsp").forward(req, resp);
+        if(!action.equals("exit")) {
+            req.setAttribute("stores", storeDao.findAll());
+            req.getRequestDispatcher("store.jsp").forward(req, resp);
+        }
     }
 }

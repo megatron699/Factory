@@ -21,6 +21,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
+            <form action="worker" method="post">
+                <button type="submit" name="action" value="exit" class="nav-item btn nav-link active">Выйти</button>
+            </form>
             <%--            <a class="nav-item nav-link" href="http://samara.nebar.ru/">Отдых после тяжелого рабочего дня</a>--%>
         </div>
     </div>
