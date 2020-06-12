@@ -14,19 +14,51 @@
 </head>
 <body class="main-page">
 <div class="my-panel tiny-panel">
+    <div style="padding: 15px; padding-bottom: 5px">
     <form action="login" method="post">
-        <div class="input-group mb-3">
-            <div class="form-control">
+        <table style="text-align: center">
+            <tr>
+                <td>
+                <div>
+                <label for="username">Логин</label>
+                <input type="text" id="username" name="username" class="form-control" required>
+                </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <div>
+            <label for="password">Пароль</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+                </div>
+                </td>
+            </tr>
 
-                <input type="text" name="username" required>
-            </div>
-            <div class="form-control">
-                <input type="password" name="password" required>
-            </div>
+            <%
+            if (!Boolean.parseBoolean(request.getAttribute("success").toString())){
+            %>
+            <tr>
+                <td>
+                <div>
+            <label class="text-danger">Неверный логин и/или пароль</label>
+                </div>
+                </td>
+            </tr>
+            <%
+            }
+            %>
+            <tr>
 
+                    <td style="padding-top: 15px">
+                        <div>
             <button type="submit" class="btn btn-secondary">Войти</button>
-        </div>
+                        </div>
+                    </td>
+
+            </tr>
+        </table>
     </form>
+    </div>
 </div>
 </body>
 </html>

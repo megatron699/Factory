@@ -4,6 +4,7 @@
 <%@ page import="DAO.PlaceOfWorkDao" %>
 <%@ page import="DAO.WorkerDao" %>
 <%@ page import="models.Attendance" %>
+<%@ page import="DAO.UserDao" %>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <html>
 <head>
@@ -20,7 +21,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="index">На главную<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" href="index">На главную</a>
             <a class="nav-item nav-link active" href="store">Управление складами</a>
             <a class="nav-item nav-link active" href="manufactory">Управление цехами</a>
             <a class="nav-item nav-link active" href="assign" >Управление назначениями цехов</a>
@@ -270,12 +271,19 @@
             </form>
             <td>
                 <form action="attendance" method="get">
-
                     <button type="submit" class="btn btn-secondary" name="attendance" value="<%=worker.getIdWorker()%>">Посещаемость</button>
                 </form>
-            </td>
-            <td>
-                <a href="register" class="btn btn-secondary" role="button">Зарегистрировать</a>
+                <%
+                    UserDao userDao = new UserDao();
+                    if(userDao.get(worker.getIdWorker()) == null){
+                %>
+                <form action="register" method="get">
+                    <button type="submit" class="btn btn-secondary" name="register" value="<%=worker.getIdWorker()%>">Зарегистрировать</button>
+<%--                <a href="register" class="btn btn-secondary" role="button">Зарегистрировать</a>--%>
+                </form>
+                <%
+                    }
+                %>
             </td>
         </tr>
         </form>

@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-//@WebFilter("/Zavod/admin/*")
+@WebFilter(value = "/Zavod/admin/*")
 public class AdminFilter implements Filter {
 
     @Override
@@ -29,9 +29,13 @@ public class AdminFilter implements Filter {
             if (!userRole) {
                 response.sendRedirect(request.getContextPath() + "/Zavod/user/worker");
             } else {
-                response.sendRedirect(request.getContextPath() + "/Zavod/admin/index");
+              /*  StringBuffer path = request.getRequestURL();
+            //    request.getRequestDispatcher(path.toString()).forward(request, response);
+                response.sendRedirect(path.toString());*/
+                filterChain.doFilter(request, response);
             }
         } else{
+
             response.sendRedirect(request.getContextPath() + "/Zavod/login");
         }
     }

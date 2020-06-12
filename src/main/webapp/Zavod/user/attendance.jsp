@@ -15,10 +15,6 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="index">На главную<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link active" href="store">Управление складами</a>
-            <a class="nav-item nav-link active" href="manufactory">Управление цехами</a>
-            <a class="nav-item nav-link active" href="assign" >Управление назначениями цехов</a>
         </div>
     </div>
 </nav>
@@ -31,7 +27,6 @@
         <th scope="col">Время прихода</th>
         <th scope="col">Время ухода</th>
         <th scope="col"></th>
-        <th scope="col"></th>
     </tr>
     </thead>
     <%
@@ -43,8 +38,7 @@
 
 
     %>
-    <form action="attendance" method="POST">
-        <tr>
+           <tr>
             <div class="input-group mb-3">
             <td>
                 <input type="text" class="form-control" hidden name="id" value="<%=attendance.getIdReport()%>"
@@ -74,12 +68,10 @@
                 <input type="text" class="form-control" hidden name="idworker" value="<%=attendance.getWorker().getIdWorker()%>"
                        title="<%=attendance.getWorker().getIdWorker()%>>" readonly>
             </td>
-            <td>
-                <button type="submit" class="btn btn-secondary" name="action" value="delete">Удалить</button>
-            </td>
+
             </div>
         </tr>
-    </form>
+
     <%
         }
     }

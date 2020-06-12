@@ -26,11 +26,17 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute("username", user.getUsername());
             session.setAttribute("userrole", user.isUserRole());
+            session.setAttribute("worker", user.getWorker());
+            req.setAttribute("success", true);
             if (user.isUserRole()) {
                 resp.sendRedirect("/Zavod/admin/index");
             } else {
                 resp.sendRedirect("/Zavod/user/worker");
             }
+        }
+        else {
+            req.setAttribute("success", false);
+            req.getRequestDispatcher("login.jsp").forward(req, resp);
         }
     }
 
@@ -50,6 +56,7 @@ public class LoginServlet extends HttpServlet {
             user.setUserRole(true);
             userDao.save(user);
         }
+        req.setAttribute("success", true);
         req.getRequestDispatcher("login.jsp").forward(req, resp);
     }
 }

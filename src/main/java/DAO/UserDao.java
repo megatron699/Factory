@@ -73,4 +73,10 @@ public class UserDao implements IDao<User>{
         }
         return user;
     }
+    public User getByUsername(String username) {
+        currentSession.openCurrentSession();
+        User user = (User) currentSession.getCurrentSession().createQuery("FROM User WHERE username = '" + username + "'").uniqueResult();
+        currentSession.closeCurrentSession();
+        return user;
+    }
 }

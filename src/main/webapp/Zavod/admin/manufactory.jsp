@@ -22,7 +22,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="index">На главную<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" href="index">На главную</a>
             <a class="nav-item nav-link active" href="store">Управление складами</a>
             <a class="nav-item nav-link active" href="worker">Управление работниками</a>
             <a class="nav-item nav-link active" href="assign" >Управление назначениями цехов</a>

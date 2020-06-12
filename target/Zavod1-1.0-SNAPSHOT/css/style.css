@@ -1,3 +1,8 @@
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
 .main-page {
     text-align: center;
     height: 100%;
@@ -36,9 +41,16 @@
 .my-panel {
     border: 1px solid #D4D4D4;
     margin: 20px auto;
-    background-color: #FFFFFF;
+    background-color: white;
+    opacity: 0.8;
 }
 .tiny-panel{
     margin:20px auto;
     width:300px;
+}
+.my-panel label, input, button{
+    opacity: 1;
+}
+.panel-body{
+    padding: 15px;
 }
