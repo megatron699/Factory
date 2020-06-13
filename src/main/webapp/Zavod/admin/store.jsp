@@ -9,7 +9,6 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <%--    <a class="navbar-brand" href="#">Navbar</a>--%>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -26,9 +25,6 @@
     </div>
 </nav>
 
-<%--<a href="manufactory">Перейти к управлению данными о цехах</a>
-<a href="worker">Перейти к управлению данными о работниках</a>
-<a href="assign">Перейти к управлению данными о назначении цехов</a>--%>
 <div class="my-table">
 <form action="store" method="POST">
     <table class="table table-striped">
@@ -98,10 +94,8 @@
         </tr>
         </thead>
         <%
-            //List<PlaceOfWork> placeOfWorks = (List<PlaceOfWork>) request.getAttribute("placeofworks");
             List<Store> stores = (List<Store>) request.getAttribute("stores");
             if (stores != null) {
-                //for (PlaceOfWork placeOfWork : placeOfWorks) {
                     for (Store store: stores) {
 
 
@@ -138,8 +132,6 @@
         <%
             }
         }
-
-       // }
             else {
         %>
         Здесь ничего нет...

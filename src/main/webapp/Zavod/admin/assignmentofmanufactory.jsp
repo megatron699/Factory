@@ -10,7 +10,6 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <%--    <a class="navbar-brand" href="#">Navbar</a>--%>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -26,12 +25,6 @@
         </div>
     </div>
 </nav>
-
-<%--
-<a href="store">Перейти к управлению данными о складах</a>
-<a href="worker">Перейти к управлению данными о работниках</a>
-<a href="manufactory">Перейти к управлению данными о цехах</a>
---%>
 
 <div class="my-table">
 <form action="assign" method="POST">
@@ -91,7 +84,6 @@
         <%
             List<AssignmentOfManufactory> assignmentofmanufactories = (List<AssignmentOfManufactory>) request.getAttribute("assignmentofmanufactories");
             if (assignmentofmanufactories != null) {
-                //for (PlaceOfWork placeOfWork : placeOfWorks) {
                 for (AssignmentOfManufactory assignmentOfManufactory: assignmentofmanufactories) {
 
 

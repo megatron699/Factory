@@ -25,7 +25,6 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (!req.getParameter("action").equals("exit")) {
             UserDao userDao = new UserDao();
             WorkerDao workerDao = new WorkerDao();
             User user = new User();
@@ -52,10 +51,5 @@ public class RegisterServlet extends HttpServlet {
                 req.setAttribute("status", "username");
                 req.getRequestDispatcher("register.jsp").forward(req, resp);
             }
-        } else {
-            HttpSession session = req.getSession(false);
-            session.invalidate();
-            resp.sendRedirect("/Zavod/login");
-        }
     }
 }

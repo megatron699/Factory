@@ -16,7 +16,6 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-<%--        <a class="navbar-brand" href="#">Navbar</a>--%>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -33,9 +32,6 @@
     </div>
 </nav>
 
-<%--<a href="store">Перейти к управлению данными о складах</a>
-<a href="worker">Перейти к управлению данными о работниках</a>
-<a href="assign">Перейти к управлению данными о назначении цехов</a>--%>
 <div class="my-table">
 <form action="manufactory" method="POST">
     <table class="table table-striped">
@@ -62,9 +58,6 @@
                 <input type="number" class="form-control" name="amountpermonth" placeholder="Введите количество"
                        title="Введите количество, сколько необходимо произвести за месяц" min="0" required>
             </td>
-           <%-- <td title="Введите ID назначения цеха"><input type="number" name="idassign" placeholder="Введите ID"
-                       title="Введите ID назначения цеха" min="0"></td>
-            <td>--%>
             <td>
                 <select class="form-control" type="text" name="assignmentofmanufactory">
                     <%
@@ -162,7 +155,6 @@
                         } catch (Exception ex) {%>
                     <option value="" selected disabled></option>
                     <%}
-                        //   List<PlaceOfWork> placeOfWorks = (List<PlaceOfWork>) request.getAttribute("placeofworks");
                         for (AssignmentOfManufactory assignmentOfManufactory : assignmentOfManufactories) {
                     %>
                     <option value="<%=assignmentOfManufactory.getIdAssignmentOfManufactory()%>">

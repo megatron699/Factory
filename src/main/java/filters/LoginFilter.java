@@ -10,7 +10,7 @@ import java.io.IOException;
 
 /*@WebFilter(servletNames = {"assignmentOfManufactoryServlet", "AttendanceAdminServlet", "LoginServlet", "MainServlet",
 "ManufactoryServlet", "RegisterServlet", "StoreServlet", "WorkerAdminServlet"})//Все страницы сайта обрабатывает данный фильтр*/
-@WebFilter(value = "/Zavod/*")
+@WebFilter("/Zavod/*")
 public class LoginFilter implements Filter{
 
         @Override

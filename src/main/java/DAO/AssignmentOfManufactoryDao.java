@@ -49,7 +49,6 @@ public class AssignmentOfManufactoryDao implements IDao<AssignmentOfManufactory>
     @Override
     public List<AssignmentOfManufactory> findAll(){
         currentSession.openCurrentSession();
-//        List<AssignmentOfManufactory> assignmentOfManufactories = currentSession.getCurrentSession().createCriteria(AssignmentOfManufactory.class).list();
         List<AssignmentOfManufactory> assignmentOfManufactories = (List<AssignmentOfManufactory>) currentSession.
                 getCurrentSession().createQuery("FROM AssignmentOfManufactory ORDER BY assign").list();
         currentSession.closeCurrentSession();

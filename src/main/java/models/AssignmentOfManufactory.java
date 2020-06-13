@@ -14,7 +14,6 @@ public class AssignmentOfManufactory {
     @Column(name = "id_assignment_of_manufactory", updatable = false)
     private long idAssignmentOfManufactory;
     private String assign;
-   // @JoinColumn(name = "assignmentOfManufactory", referencedColumnName = "assignmentOfManufactory")
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "assignmentOfManufactory")
     private List<Manufactory> manufactories;
 

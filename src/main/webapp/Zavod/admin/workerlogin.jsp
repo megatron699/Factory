@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Логины пользователей</title>
+    <title>Данные для входа</title>
     <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
 </head>

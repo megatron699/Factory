@@ -57,11 +57,4 @@ public class PlaceOfWorkDao implements IDao<PlaceOfWork> {
         return null;
     }
 
-/*    public String getPlaceOfWorkType(long id){
-        currentSession.openCurrentSession();
-        String placeOfWorkType = currentSession.getCurrentSession().createQuery("SELECT place_of_work_type" +
-                " FROM PlaceOfWork WHERE id_place_of_work = " + id).toString();
-        currentSession.closeCurrentSession();
-        return placeOfWorkType;
-    }*/
 }

@@ -4,7 +4,6 @@ import DAO.AttendanceDao;
 import DAO.PlaceOfWorkDao;
 import DAO.WorkerDao;
 import models.Attendance;
-import models.PlaceOfWork;
 import models.Worker;
 
 import javax.servlet.ServletException;
@@ -121,7 +120,6 @@ public class WorkerAdminServlet extends HttpServlet {
         }
         if(!action.equals("exit")) {
             req.setAttribute("workers", workerDao.findAll());
-//        req.setAttribute("presence", worker.isPresence());
             req.setAttribute("placeofworks", placeOfWorkDao.findAll());
             req.getRequestDispatcher("worker.jsp").forward(req, resp);
         }

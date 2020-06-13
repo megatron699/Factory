@@ -1,8 +1,6 @@
 package servlets;
 
-import DAO.PlaceOfWorkDao;
 import DAO.StoreDao;
-import models.PlaceOfWork;
 import models.Store;
 
 import javax.servlet.ServletException;
@@ -36,7 +34,6 @@ public class StoreServlet extends HttpServlet {
         else {
             req.setAttribute("stores", storeDao.findAll());
         }
-       // req.setAttribute("stores", storeDao.findAll());
         req.getRequestDispatcher("store.jsp").forward(req, resp);
     }
 

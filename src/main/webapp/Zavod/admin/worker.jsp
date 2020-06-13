@@ -15,7 +15,6 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <%--    <a class="navbar-brand" href="#">Navbar</a>--%>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -28,15 +27,10 @@
             <form action="worker" method="post">
                 <button type="submit" name="action" value="exit" class="nav-item btn nav-link active">Выйти</button>
             </form>
-            <%--            <a class="nav-item nav-link" href="http://samara.nebar.ru/">Отдых после тяжелого рабочего дня</a>--%>
         </div>
     </div>
 </nav>
 
-
-<%--<a href="store">Перейти к управлению данными о складах</a>
-<a href="manufactory">Перейти к управлению данными о цехах</a>
-<a href="assign">Перейти к управлению данными о назначении цехов</a>--%>
 <div class="my-table">
 <form action="worker" method="POST">
     <table class="table table-striped">
@@ -79,7 +73,7 @@
                     for (PlaceOfWork placeOfWork : placeOfWorks) {
                 %>
                 <option class="form-control" value="<%=placeOfWork.getIdPlaceOfWork()%>">
-                    <%=placeOfWork.getPlaceOfWorkName() /*+ " " + placeOfWorkDao.getPlaceOfWorkType(placeOfWork.getIdPlaceOfWork())*/%>
+                    <%=placeOfWork.getPlaceOfWorkName()%>
                 </option>
                 <%
                     }
@@ -96,10 +90,6 @@
                 <input type="checkbox" class="form-check-input" name="sickLeave">
                 </div>
             </td>
-          <%--  <td title="Введите ID места работы">
-                <input type="number" name="idplaceofwork" placeholder="Введите ID"
-                       title="Введите ID места работы" min="0">
-            </td>--%>
             <td class="my-td">
                 <button type="submit" class="btn btn-secondary" name="action" value="add">Сохранить</button>
             </td>
@@ -119,7 +109,6 @@
                    <option class="form-control" value="firstname">Имя</option>
                    <option class="form-control" value="middlename">Отчество</option>
                    <option class="form-control" value="post">Должность</option>
-<%--                   <option value="placeofwork">Место работы</option>--%>
                </select>
            </td>
            <td>
@@ -134,8 +123,6 @@
    </table>
 
 </form>
-
-<%--        <a href="logins" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Просмотреть логины работников</a>--%>
 
     <table class="table table-striped">
         <thead class="thead-dark">
@@ -155,11 +142,8 @@
         </tr>
         </thead>
         <%
-
-            //List<PlaceOfWork> placeOfWorks = (List<PlaceOfWork>) request.getAttribute("placeofworks");
             List<Worker> workers = (List<Worker>) request.getAttribute("workers");
             if (workers != null) {
-                //for (PlaceOfWork placeOfWork : placeOfWorks) {
                 for (Worker worker: workers) {
 
 
@@ -191,24 +175,20 @@
             <td width="12%">
                 <select type="text" class="form-control" name="placeofwork">
                     <%
-                        //long idassign = manufactory.getAssignmentOfManufactory().getIdAssignmentOfManufactory();
-                        //if(Objects.isNull(idassign))
                         try{
                             PlaceOfWork thisPlaceOfWork = placeOfWorkDao.get(worker.getPlaceOfWork().getIdPlaceOfWork());
                     %>
                     <option title="<%=thisPlaceOfWork.getPlaceOfWorkName()%>" value="<%=thisPlaceOfWork.getIdPlaceOfWork()%>" selected disabled>
-                        <%=thisPlaceOfWork.getPlaceOfWorkName() /*+ " " + placeOfWorkDao.getPlaceOfWorkType(thisPlaceOfWork.getIdPlaceOfWork())*/%>
+                        <%=thisPlaceOfWork.getPlaceOfWorkName()%>
                     </option>
                     <%
                     } catch (Exception ex) {%>
                     <option value="" selected disabled></option>
                     <%}
-
-                     //   List<PlaceOfWork> placeOfWorks = (List<PlaceOfWork>) request.getAttribute("placeofworks");
                         for (PlaceOfWork placeOfWork : placeOfWorks) {
                     %>
                     <option value="<%=placeOfWork.getIdPlaceOfWork()%>">
-                        <%=placeOfWork.getPlaceOfWorkName() /*+ " " + placeOfWorkDao.getPlaceOfWorkType(placeOfWork.getIdPlaceOfWork())*/%>
+                        <%=placeOfWork.getPlaceOfWorkName()%>
                     </option>
                     <%
                         }
@@ -283,14 +263,12 @@
                 %>
                 <form action="register" method="get">
                     <button type="submit" class="btn btn-secondary" name="register" value="<%=worker.getIdWorker()%>">Зарегистрировать</button>
-<%--                <a href="register" class="btn btn-secondary" role="button">Зарегистрировать</a>--%>
                 </form>
                 <%
                     } else {
                 %>
                 <form action="workerlogin" method="get">
                     <button type="submit" class="btn btn-secondary" name="workerlogin" value="<%=worker.getIdWorker()%>">Данные для входа</button>
-                    <%--                <a href="register" class="btn btn-secondary" role="button">Зарегистрировать</a>--%>
                 </form>
                 <%
                     }

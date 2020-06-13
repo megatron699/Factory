@@ -2,7 +2,6 @@ package servlets;
 
 import DAO.AssignmentOfManufactoryDao;
 import DAO.ManufactoryDao;
-import models.AssignmentOfManufactory;
 import models.Manufactory;
 
 import javax.servlet.ServletException;
